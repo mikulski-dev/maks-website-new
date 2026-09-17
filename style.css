@@ -460,8 +460,10 @@ div[onmouseenter][style*="background:#2c3172"] {
     flex: 0 0 auto;
     /* Exactly three cards across the container, as wide as the row allows. */
     width: calc((var(--rail-w) - 2 * var(--rail-gap)) / 3);
-    /* As tall as the screen can hold while the panel is pinned, up to 38rem. */
-    height: clamp(22rem, calc(100svh - 22.5rem), 38rem);
+    /* As tall as the screen can hold while the panel is pinned, up to 30rem.
+       Shorter than before so the photos read as full shots rather than a
+       tight, zoomed-in crop. */
+    height: clamp(18rem, calc(100svh - 26rem), 30rem);
     border-radius: 0;
 }
 @media (max-width: 1023px) { .services-track > .service-card { width: calc((var(--rail-w) - var(--rail-gap)) / 2); } }
