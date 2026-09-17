@@ -10,6 +10,10 @@
 scratch/
 *.textClipping
 
+# Raw, unused client phone photos - not resized/compressed, still carry EXIF/GPS.
+# Not referenced anywhere on the site; kept locally only until sorted or discarded.
+assets/imgs/client-photos-unsorted/
+
 # Dependencies
 node_modules/
 .npm

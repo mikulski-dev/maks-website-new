@@ -184,17 +184,37 @@
                     <!-- Service Card -->
                     <div id="extensions" class="service-card extensions relative flex flex-col overflow-hidden bg-[#2c3172] rounded-[2rem] shadow-xl min-h-[26rem] md:min-h-[28rem]"
                         style="display: flex;">
-                        <img src="../assets/imgs/real/extensions-real-2.webp"
-                            alt="A finished gable-end rear extension in render, seen from the garden" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <div class="service-card-scrim absolute inset-0"></div>
+                        <div class="ba-slider touch-pan-y absolute inset-0 w-full h-full group">
+                            <img src="../assets/imgs/services/extension-after.webp"
+                                alt="After: a finished rear extension with full-width glazing and an upper-floor dormer"
+                                loading="lazy" decoding="async"
+                                class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+                            <img src="../assets/imgs/services/extension-before.webp"
+                                alt="Before: the same extension mid-build, with scaffolding and an open shell"
+                                loading="lazy" decoding="async"
+                                style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"
+                                class="ba-before absolute inset-0 w-full h-full object-cover pointer-events-none">
 
-                        <div class="relative z-10 flex flex-col justify-end flex-grow p-7 lg:p-8">
+                            <div class="ba-handle absolute top-0 bottom-0 left-1/2 w-1 bg-white/90 shadow-[0_0_12px_rgba(0,0,0,0.6)] pointer-events-none -ml-[2px] flex items-center justify-center z-20">
+                                <div class="w-11 h-11 bg-white rounded-full shadow-xl flex items-center justify-center text-[#2c3172] transition-transform group-hover:scale-110">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 9l-3 3m0 0l3 3m-3-3h14m0 0l-3-3m3 3l-3 3"></path>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="absolute top-5 left-5 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded text-[11px] font-bold tracking-widest font-body uppercase pointer-events-none z-20">Before</div>
+                            <div class="absolute top-5 right-5 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded text-[11px] font-bold tracking-widest font-body uppercase pointer-events-none z-20">After</div>
+                        </div>
+                        <div class="service-card-scrim absolute inset-0 z-10 pointer-events-none"></div>
+
+                        <div class="relative z-10 flex flex-col justify-end flex-grow p-7 lg:p-8 pointer-events-none">
                             <h3 class="font-heading text-2xl lg:text-3xl font-bold text-white mb-3">Extensions</h3>
                             <p class="font-body text-white/85 text-sm lg:text-base leading-relaxed">Single-storey and two-storey extensions. Foundations, brickwork, roof, windows and doors, then the inside finished.</p>
                         </div>
 
-                        <div class="service-card-actions relative z-10">
+                        <div class="service-card-actions relative z-30">
                             <a href="contact.html"
                                 class="service-card-btn service-card-btn-solid font-body">Get in Touch</a>
                             <a href="services/extensions.html"

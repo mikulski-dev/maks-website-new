@@ -6,5 +6,5 @@ scratch/
 README.md
 
 # Raw client photo dump - unprocessed originals still carry EXIF/GPS metadata.
-# Only the processed, stripped copies in assets/imgs/real/ are served.
-assets/imgs/New-images-for-web/
+# Only the processed, stripped copies in assets/imgs/real/ and assets/imgs/gallery/ are served.
+assets/imgs/client-photos-unsorted/

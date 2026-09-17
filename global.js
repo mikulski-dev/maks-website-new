@@ -24,6 +24,32 @@ async function initApp() {
     }
 
     initHeaderScroll();
+    initBeforeAfterSliders();
+}
+
+function initBeforeAfterSliders() {
+    const sliders = document.querySelectorAll('.ba-slider');
+    sliders.forEach(slider => {
+        const beforeImage = slider.querySelector('.ba-before');
+        const handle = slider.querySelector('.ba-handle');
+        if (!beforeImage || !handle) return;
+        let isDragging = false;
+        const updateSlider = (e) => {
+            if (!isDragging) return;
+            const rect = slider.getBoundingClientRect();
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const xPos = Math.max(0, Math.min(clientX - rect.left, rect.width));
+            const percentage = (xPos / rect.width) * 100;
+            beforeImage.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+            handle.style.left = `${percentage}%`;
+        };
+        slider.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', updateSlider);
+        slider.addEventListener('touchstart', () => isDragging = true, { passive: true });
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', updateSlider, { passive: true });
+    });
 }
 
 if (document.readyState === 'loading') {
