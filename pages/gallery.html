@@ -113,14 +113,6 @@
                             style="border-color:rgba(44,49,114,0.06); -webkit-overflow-scrolling: touch;">
                             <ul class="flex items-center gap-2 w-max px-4 sm:px-2 justify-center mx-auto">
                                 <li>
-                                    <a href="#all"
-                                        class="filter-btn block px-4 py-2 rounded-full font-body text-sm md:text-base font-semibold transition-colors duration-300 whitespace-nowrap"
-                                        style="background:#e5a824; color:#000000;"
-                                        data-filter="all">
-                                        All Projects
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="#kitchens"
                                         class="filter-btn block px-4 py-2 rounded-full font-body text-sm md:text-base font-semibold transition-colors duration-300 whitespace-nowrap"
                                         style="color:rgba(0,0,0,0.80);"
@@ -177,10 +169,6 @@
                 <!-- --Gallery content ---->
                 <div class="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-10 relative z-20 flex-grow">
 
-                    <!-- All Projects masonry (built via JS) -->
-                    <div id="all-projects-grid" class="mb-16" style="display:none;"></div>
-
-                    
                     <!-- CATEGORY: KITCHENS -->
                     <div class="category-section mb-24" data-category="kitchens" id="kitchens">
                         <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
@@ -1242,14 +1230,6 @@
                                     <img src="../assets/imgs/gallery/conversions-18.webp" alt="Room conversion work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-
-                            <div class="gallery-tile" data-category="conversions">
-                                <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
-                                    data-src="../assets/imgs/gallery/conversions-19.webp"
-                                    data-caption="Room conversion, Norfolk">
-                                    <img src="../assets/imgs/gallery/conversions-19.webp" alt="Room conversion work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
-                                </button>
-                            </div>
                         </div>
                     </div>
 
@@ -1266,62 +1246,7 @@
                         var scrollLeft   = document.getElementById('scroll-left');
                         var scrollRight  = document.getElementById('scroll-right');
 
-                        /* --Masonry "All Projects" --*/
-                        var masonryBuilt = false;
-                        window.masonryImages = [];
-                        window.masonryIndex  = 0;
-                        window.masonryMode   = false;
-
-                        function openMasonryLightbox(index) {
-                            window.masonryIndex = index;
-                            window.masonryMode  = true;
-                            var item     = window.masonryImages[index];
-                            var lb       = document.getElementById('lightbox');
-                            var lbImg    = document.getElementById('lightbox-img');
-                            var lbCap    = document.getElementById('lightbox-caption');
-                            lbImg.src    = item.src;
-                            lbImg.alt    = item.alt || '';
-                            lbCap.textContent = item.caption || '';
-                            lb.classList.remove('hidden');
-                            setTimeout(function () { lb.classList.remove('opacity-0'); }, 10);
-                            document.body.style.overflow = 'hidden';
-                        }
-
-                        function buildMasonryGrid() {
-                            if (masonryBuilt) return;
-                            masonryBuilt = true;
-                            var allGrid = document.getElementById('all-projects-grid');
-
-                            sections.forEach(function (sec) {
-                                /* Regular gallery items */
-                                sec.querySelectorAll('.gallery-item').forEach(function (item) {
-                                    var src     = item.getAttribute('data-src');
-                                    var caption = item.getAttribute('data-caption');
-                                    var img     = item.querySelector('img');
-                                    window.masonryImages.push({
-                                        src:     src,
-                                        alt:     img ? img.getAttribute('alt') : caption,
-                                        caption: caption
-                                    });
-                                });
-                            });
-
-                            window.masonryImages.forEach(function (item, i) {
-                                var div = document.createElement('div');
-                                div.className = 'masonry-item';
-                                
-                                div.style.backgroundColor = 'rgba(44,49,114,0.05)';
-                                div.innerHTML =
-                                    '<img src="' + item.src + '" alt="' + (item.alt || '') + '" loading="lazy" decoding="async">' +
-                                    '';
-                                div.addEventListener('click', (function (idx) {
-                                    return function () { openMasonryLightbox(idx); };
-                                })(i));
-                                allGrid.appendChild(div);
-                            });
-                        }
-
-                        /* --Filter buttons --*/
+                        /* --Filter buttons: narrow to one category, or show every section --*/
                         filterBtns.forEach(function (btn) {
                             btn.addEventListener('click', function (e) {
                                 e.preventDefault();
@@ -1337,33 +1262,16 @@
                                 btn.style.color      = '#000000';
                                 btn.style.boxShadow  = '0 4px 14px rgba(232, 176, 30,0.35)';
 
-                                var filter  = btn.getAttribute('data-filter');
-                                var allGrid = document.getElementById('all-projects-grid');
+                                var filter = btn.getAttribute('data-filter');
 
-                                if (filter === 'all') {
-                                    buildMasonryGrid();
-                                    allGrid.style.display = 'grid';
-                                    sections.forEach(function (s) { s.style.display = 'none'; });
-                                } else {
-                                    allGrid.style.display = 'none';
-                                    sections.forEach(function (s) {
-                                        var items       = s.querySelectorAll('[data-category]');
-                                        var visibleCount = 0;
-                                        items.forEach(function (item) {
-                                            var match = item.getAttribute('data-category') === filter;
-                                            item.style.display = match ? '' : 'none';
-                                            if (match) visibleCount++;
-                                        });
-                                        s.style.display = visibleCount > 0 ? 'block' : 'none';
-                                    });
-                                }
+                                sections.forEach(function (s) {
+                                    s.style.display = s.getAttribute('data-category') === filter ? 'block' : 'none';
+                                });
                             });
                         });
 
-                        /* Default: All Projects masonry */
-                        buildMasonryGrid();
-                        document.getElementById('all-projects-grid').style.display = 'grid';
-                        sections.forEach(function (s) { s.style.display = 'none'; });
+                        /* Default: every category section shown, nothing filtered */
+                        sections.forEach(function (s) { s.style.display = 'block'; });
 
                         /* --Horizontal scroll buttons --*/
                         if (navContainer && scrollLeft && scrollRight) {
@@ -1537,7 +1445,6 @@
             }
 
             function closeLightbox() {
-                window.masonryMode = false;
                 lightbox.classList.add('opacity-0');
                 setTimeout(function () {
                     lightbox.classList.add('hidden');
@@ -1555,24 +1462,12 @@
 
             document.getElementById('lightbox-next').addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (window.masonryMode) {
-                    window.masonryIndex = (window.masonryIndex + 1) % window.masonryImages.length;
-                    var im = window.masonryImages[window.masonryIndex];
-                    lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCap.textContent = im.caption || '';
-                } else {
-                    updateLightboxContent(currentIndex + 1);
-                }
+                updateLightboxContent(currentIndex + 1);
             });
 
             document.getElementById('lightbox-prev').addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (window.masonryMode) {
-                    window.masonryIndex = (window.masonryIndex - 1 + window.masonryImages.length) % window.masonryImages.length;
-                    var im = window.masonryImages[window.masonryIndex];
-                    lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCap.textContent = im.caption || '';
-                } else {
-                    updateLightboxContent(currentIndex - 1);
-                }
+                updateLightboxContent(currentIndex - 1);
             });
 
             lightbox.addEventListener('click', function (e) {
@@ -1582,20 +1477,8 @@
             document.addEventListener('keydown', function (e) {
                 if (lightbox.classList.contains('hidden')) return;
                 if (e.key === 'Escape')     { closeLightbox(); }
-                if (e.key === 'ArrowRight') {
-                    if (window.masonryMode) {
-                        window.masonryIndex = (window.masonryIndex + 1) % window.masonryImages.length;
-                        var im = window.masonryImages[window.masonryIndex];
-                        lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCap.textContent = im.caption || '';
-                    } else { updateLightboxContent(currentIndex + 1); }
-                }
-                if (e.key === 'ArrowLeft') {
-                    if (window.masonryMode) {
-                        window.masonryIndex = (window.masonryIndex - 1 + window.masonryImages.length) % window.masonryImages.length;
-                        var im = window.masonryImages[window.masonryIndex];
-                        lightboxImg.src = im.src; lightboxImg.alt = im.alt || ''; lightboxCap.textContent = im.caption || '';
-                    } else { updateLightboxContent(currentIndex - 1); }
-                }
+                if (e.key === 'ArrowRight') { updateLightboxContent(currentIndex + 1); }
+                if (e.key === 'ArrowLeft')  { updateLightboxContent(currentIndex - 1); }
             });
         });
     </script>
