@@ -65,17 +65,15 @@ key is a public identifier and is safe in client-side source.
 
 ## Images
 
-Project photos are the client's own. Site images are generated from them
-into `assets/imgs/hero/`, `assets/imgs/services/`, `assets/imgs/gallery/`
-and `assets/imgs/general/`; the original folders (`bathroom/`, `kitchen/`,
-`extension/`, `renovation and conversion. /`) are kept as the source set.
+Project photos are the client's own. Site images (hero, service cards, service
+pages and the gallery) are all generated from `assets/imgs/gallery/`, resized
+to a max width of 1600px with EXIF/GPS metadata stripped. The raw source set
+is `assets/imgs/drive-download-20260917T195930Z-1-001/` (excluded from
+deployment via `.vercelignore` since the originals still carry metadata; not
+excluded from git).
 
-The gallery uses a CSS-column masonry so photos display at their native
-aspect ratio — portrait shots are not cropped to landscape.
-
-**Conversions has no photos yet.** Those slots point at
-`assets/imgs/services/conversions-placeholder.webp` and are marked with
-`TODO(assets)` comments. Do not fill them with renovation photos.
+The gallery uses a CSS-grid so photos display in fixed-height tiles, cropped
+to a consistent shape.
 
 ## Brand
 
