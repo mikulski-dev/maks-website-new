@@ -113,6 +113,14 @@
                             style="border-color:rgba(44,49,114,0.06); -webkit-overflow-scrolling: touch;">
                             <ul class="flex items-center gap-2 w-max px-4 sm:px-2 justify-center mx-auto">
                                 <li>
+                                    <a href="#all"
+                                        class="filter-btn block px-4 py-2 rounded-full font-body text-sm md:text-base font-semibold transition-colors duration-300 whitespace-nowrap"
+                                        style="background:#e5a824; color:#000000;"
+                                        data-filter="all">
+                                        All Projects
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="#kitchens"
                                         class="filter-btn block px-4 py-2 rounded-full font-body text-sm md:text-base font-semibold transition-colors duration-300 whitespace-nowrap"
                                         style="color:rgba(0,0,0,0.80);"
@@ -169,12 +177,7 @@
                 <!-- --Gallery content ---->
                 <div class="w-full max-w-[98rem] mx-auto px-4 sm:px-6 lg:px-10 relative z-20 flex-grow">
 
-                    <!-- CATEGORY: KITCHENS -->
-                    <div class="category-section mb-24" data-category="kitchens" id="kitchens">
-                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
-                            Kitchens
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             <div class="gallery-tile" data-category="kitchens">
                                 <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
                                     data-src="../assets/imgs/gallery/kitchens-1.webp"
@@ -270,15 +273,7 @@
                                     <img src="../assets/imgs/gallery/kitchens-12.webp" alt="Kitchen fitting and renovation work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- CATEGORY: BATHROOMS -->
-                    <div class="category-section mb-24" data-category="bathrooms" id="bathrooms">
-                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
-                            Bathrooms
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             <div class="gallery-tile" data-category="bathrooms">
                                 <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
                                     data-src="../assets/imgs/gallery/bathrooms-1.webp"
@@ -598,15 +593,7 @@
                                     <img src="../assets/imgs/gallery/bathrooms-40.webp" alt="Bathroom fitting and renovation work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- CATEGORY: EXTENSIONS -->
-                    <div class="category-section mb-24" data-category="extensions" id="extensions">
-                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
-                            Extensions
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             <div class="gallery-tile" data-category="extensions">
                                 <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
                                     data-src="../assets/imgs/gallery/extensions-1.webp"
@@ -910,15 +897,7 @@
                                     <img src="../assets/imgs/gallery/extensions-38.webp" alt="Extension building work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- CATEGORY: RENOVATIONS -->
-                    <div class="category-section mb-24" data-category="renovations" id="renovations">
-                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
-                            Renovations
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             <div class="gallery-tile" data-category="renovations">
                                 <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
                                     data-src="../assets/imgs/gallery/renovations-1.webp"
@@ -1078,15 +1057,7 @@
                                     <img src="../assets/imgs/gallery/renovations-20.webp" alt="Renovation work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- CATEGORY: CONVERSIONS -->
-                    <div class="category-section mb-24" data-category="conversions" id="conversions">
-                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-[#000000] mb-8 text-center relative max-w-max mx-auto pb-4 section-title-accent">
-                            Conversions
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             <div class="gallery-tile" data-category="conversions">
                                 <button class="gallery-item w-full relative block rounded-[2rem] overflow-hidden shadow-xl border border-[#2c3172]/5 group cursor-pointer bg-[#2c3172]"
                                     data-src="../assets/imgs/gallery/conversions-1.webp"
@@ -1230,23 +1201,21 @@
                                     <img src="../assets/imgs/gallery/conversions-18.webp" alt="Room conversion work carried out by Norwich Builders in Norfolk" loading="lazy" class="w-full h-full block">
                                 </button>
                             </div>
-                        </div>
-                    </div>
-
                     </div>
 
                 </div>
+            </div>
 
-                <!-- --Filter + masonry JS ---->
+                <!-- --Filter JS ---->
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         var filterBtns   = document.querySelectorAll('.filter-btn');
-                        var sections     = document.querySelectorAll('.category-section');
+                        var tiles        = document.querySelectorAll('.gallery-tile');
                         var navContainer = document.getElementById('nav-container');
                         var scrollLeft   = document.getElementById('scroll-left');
                         var scrollRight  = document.getElementById('scroll-right');
 
-                        /* --Filter buttons: narrow to one category, or show every section --*/
+                        /* --Filter buttons: show every tile, or narrow to one category --*/
                         filterBtns.forEach(function (btn) {
                             btn.addEventListener('click', function (e) {
                                 e.preventDefault();
@@ -1264,14 +1233,12 @@
 
                                 var filter = btn.getAttribute('data-filter');
 
-                                sections.forEach(function (s) {
-                                    s.style.display = s.getAttribute('data-category') === filter ? 'block' : 'none';
+                                tiles.forEach(function (t) {
+                                    var match = filter === 'all' || t.getAttribute('data-category') === filter;
+                                    t.style.display = match ? '' : 'none';
                                 });
                             });
                         });
-
-                        /* Default: every category section shown, nothing filtered */
-                        sections.forEach(function (s) { s.style.display = 'block'; });
 
                         /* --Horizontal scroll buttons --*/
                         if (navContainer && scrollLeft && scrollRight) {
